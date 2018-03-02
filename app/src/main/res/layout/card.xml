@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:padding="0dp">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:tag="header"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/background_with_top_shadow"
+        android:layout_margin="0dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/drag"
+            android:contentDescription="drag icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:padding="0dp"
+            android:src="@drawable/drag_icon" />
+
+        <TextView
+            android:id="@+id/header_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"/>
+
+        <ImageButton
+            android:id="@+id/close"
+            android:contentDescription="close icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="11dp"
+            android:layout_marginEnd="11dp"
+            android:padding="0dp"
+            android:src="@drawable/close" />
+
+        <View android:id="@+id/separator"
+            android:background="@drawable/line"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

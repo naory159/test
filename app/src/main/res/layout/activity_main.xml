@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ny.myapplication.customviewtest.MainActivity">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Button" />
+
+    <com.ny.myapplication.customviewtest.Card
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/card"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true"
+        app:header_height="30dp"
+        app:header_background="@drawable/background_with_top_shadow"
+        app:header_title="יצירת סימניה">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:tag="content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28sp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="9dp"
+                android:lineSpacingExtra="14sp"
+                android:lineSpacingMultiplier="2.5"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:text="שם הסימניה"
+                android:id="@+id/bookmark_text_view" />
+
+            <EditText
+                android:id="@+id/bookmark_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/bookmark_text_view"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:paddingRight="22dp"
+                android:paddingEnd="22dp"
+                android:background="@drawable/edittext_border"
+                style="@style/Widget.AppCompat.EditText"
+                android:textCursorDrawable="@null"
+                android:inputType="text"
+                android:hint="שם ספר, שם החלק, פרק א" />
+
+            <Button
+                android:id="@+id/bookmark_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_below="@+id/bookmark_edit_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/white"
+                android:text="שמור סימניה"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+
+    </com.ny.myapplication.customviewtest.Card>
+
+</RelativeLayout>
