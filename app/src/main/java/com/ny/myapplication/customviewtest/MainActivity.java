@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,12 +18,15 @@ public class MainActivity extends Activity {
     TextView headerTitle = null;
 
     Button button = null;
+    Button changeAnimationButton = null;
     Button bookmarkSaveButton = null;
 
     Card card;
 
     EditText bookmarkEditText = null;
     TextView bookmarkTextView = null;
+
+    boolean animationChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class MainActivity extends Activity {
         headerTitle = findViewById(R.id.header_title);
 
         button = findViewById(R.id.button3);
+        changeAnimationButton = findViewById(R.id.button4);
 
         card = findViewById(R.id.card);
 
@@ -66,17 +71,36 @@ public class MainActivity extends Activity {
         bookmarkTextView.setTypeface(font);
         headerTitle.setTypeface(font);
         button.setTypeface(font);
+        changeAnimationButton.setTypeface(font);
 
-        card.SetSlideUpInterpolator(new AccelerateInterpolator());
-        card.SetSlideDownInterpolator(new AccelerateInterpolator());
+        card.setSlideUpInterpolator(new AccelerateInterpolator());
+        card.setSlideDownInterpolator(new AccelerateInterpolator());
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (card.isHide())
-                    card.ShowCard();
+                    card.showCard();
                 else
-                    card.HideCard();
+                    card.hideCard();
+            }
+        });
+
+        changeAnimationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!animationChanged) {
+                    card.setOpenAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                            R.anim.slide_right));
+                    card.setCloseAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                            R.anim.slide_left));
+                } else {
+                    card.setOpenAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                            R.anim.slide_up));
+                    card.setCloseAnimation(AnimationUtils.loadAnimation(getApplicationContext(),
+                            R.anim.slide_down));
+                }
+                animationChanged = !animationChanged;
             }
         });
 

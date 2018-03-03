@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -92,15 +93,20 @@ public class Card extends RelativeLayout {
 
         LayoutParams headerParams = (LayoutParams) header.getLayoutParams();
         headerParams.height = headerHeight;
-        if (headerBackground != null)
-            this.header.setBackground(headerBackground);
+        if (headerBackground != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                this.header.setBackground(headerBackground);
+            } else {
+                this.header.setBackgroundDrawable(headerBackground);
+            }
+        }
         this.header.setLayoutParams(headerParams);
 
         this.mainLayout.setOnTouchListener(new CardTouchListener(this.getContext()));
         this.closeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                HideCard();
+                hideCard();
             }
         });
 
@@ -111,7 +117,7 @@ public class Card extends RelativeLayout {
         slide_up = AnimationUtils.loadAnimation(this.getContext(),
                 R.anim.slide_up);
 
-        this.HideCard();
+        this.hideCard();
     }
 
     @Override
@@ -137,29 +143,37 @@ public class Card extends RelativeLayout {
         }
     }
 
-    public void HideCard() {
+    public void hideCard() {
         this.mainLayout.startAnimation(this.slide_down);
         this.mainLayout.setVisibility(GONE);
     }
 
-    public void ShowCard() {
+    public void showCard() {
         this.mainLayout.startAnimation(this.slide_up);
         this.mainLayout.setVisibility(VISIBLE);
     }
 
-    public void SetSlideUpDuration(long duration) {
+    public void setOpenAnimation(Animation animation) {
+        this.slide_up = animation;
+    }
+
+    public void setCloseAnimation(Animation animation) {
+        this.slide_down = animation;
+    }
+
+    public void setSlideUpDuration(long duration) {
         this.slide_up.setDuration(duration);
     }
 
-    public void SetSlideDownDuration(long duration) {
+    public void setSlideDownDuration(long duration) {
         this.slide_down.setDuration(duration);
     }
 
-    public void SetSlideUpInterpolator(Interpolator interpolator) {
+    public void setSlideUpInterpolator(Interpolator interpolator) {
         this.slide_up.setInterpolator(interpolator);
     }
 
-    public void SetSlideDownInterpolator(Interpolator interpolator) {
+    public void setSlideDownInterpolator(Interpolator interpolator) {
         this.slide_down.setInterpolator(interpolator);
     }
 
