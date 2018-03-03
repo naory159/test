@@ -6,14 +6,68 @@
     android:layout_height="match_parent"
     tools:context="com.ny.myapplication.customviewtest.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_alignParentTop="true"
+        android:background="#999999">
+
+        <ImageView
+            android:id="@+id/left_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/left_arrow" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/menu" />
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="14sp"
+                android:text="שם הספר, חטיבה, פרק א" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/right_arrow" />
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Button" />
+        android:layout_marginTop="12dp"
+        android:text="לחץ כאן" />
 
     <com.ny.myapplication.customviewtest.Card
         android:layout_width="match_parent"
