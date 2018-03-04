@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
 
     Button button = null;
     Button changeAnimationButton = null;
+    Button changeFontButton = null;
     Button bookmarkSaveButton = null;
 
     Card card;
@@ -27,6 +29,7 @@ public class MainActivity extends Activity {
     TextView bookmarkTextView = null;
 
     boolean animationChanged = false;
+    boolean fontChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class MainActivity extends Activity {
 
         button = findViewById(R.id.button3);
         changeAnimationButton = findViewById(R.id.button4);
+        changeFontButton = findViewById(R.id.button5);
 
         card = findViewById(R.id.card);
 
@@ -64,14 +68,15 @@ public class MainActivity extends Activity {
         bookmarkEditText = findViewById(R.id.bookmark_edit_text);
         bookmarkTextView = findViewById(R.id.bookmark_text_view);
 
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Alef-regular.ttf");
-        card.setTitleTypeface(font);
-        bookmarkSaveButton.setTypeface(font);
-        bookmarkEditText.setTypeface(font);
-        bookmarkTextView.setTypeface(font);
-        headerTitle.setTypeface(font);
-        button.setTypeface(font);
-        changeAnimationButton.setTypeface(font);
+        Typeface alefFont = Typeface.createFromAsset(getAssets(), "fonts/Alef-regular.ttf");
+        Typeface assistantFont = Typeface.createFromAsset(getAssets(), "fonts/Assistant-Regular.ttf");
+        card.setTitleTypeface(alefFont);
+        bookmarkSaveButton.setTypeface(alefFont);
+        bookmarkEditText.setTypeface(alefFont);
+        bookmarkTextView.setTypeface(alefFont);
+        headerTitle.setTypeface(alefFont);
+        button.setTypeface(alefFont);
+        changeAnimationButton.setTypeface(alefFont);
 
         card.setSlideUpInterpolator(new AccelerateInterpolator());
         card.setSlideDownInterpolator(new AccelerateInterpolator());
@@ -101,6 +106,36 @@ public class MainActivity extends Activity {
                             R.anim.slide_down));
                 }
                 animationChanged = !animationChanged;
+            }
+        });
+
+        changeFontButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!fontChanged) {
+                    Typeface assistantFont = Typeface.createFromAsset(getAssets(), "fonts/Assistant-Regular.ttf");
+                    card.setTitleTypeface(assistantFont);
+                    bookmarkSaveButton.setTypeface(assistantFont);
+                    bookmarkEditText.setTypeface(assistantFont);
+                    bookmarkTextView.setTypeface(assistantFont);
+                    headerTitle.setTypeface(assistantFont);
+                    button.setTypeface(assistantFont);
+                    changeAnimationButton.setTypeface(assistantFont);
+                    changeFontButton.setTypeface(assistantFont);
+                    Toast.makeText(MainActivity.this, "Assistant", Toast.LENGTH_SHORT).show();
+                } else {
+                    Typeface alefFont = Typeface.createFromAsset(getAssets(), "fonts/Alef-regular.ttf");
+                    card.setTitleTypeface(alefFont);
+                    bookmarkSaveButton.setTypeface(alefFont);
+                    bookmarkEditText.setTypeface(alefFont);
+                    bookmarkTextView.setTypeface(alefFont);
+                    headerTitle.setTypeface(alefFont);
+                    button.setTypeface(alefFont);
+                    changeAnimationButton.setTypeface(alefFont);
+                    changeFontButton.setTypeface(alefFont);
+                    Toast.makeText(MainActivity.this, "Alef", Toast.LENGTH_SHORT).show();
+                }
+                fontChanged = !fontChanged;
             }
         });
 

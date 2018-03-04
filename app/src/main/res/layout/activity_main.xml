@@ -73,10 +73,23 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="13dp"
         android:text="החלף אנימציה" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button4"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toStartOf="@+id/button3"
+        android:text="החלף גופן" />
 
     <com.ny.myapplication.customviewtest.Card
         android:layout_width="match_parent"
