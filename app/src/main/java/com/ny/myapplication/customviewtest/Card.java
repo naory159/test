@@ -29,6 +29,7 @@ public class Card extends RelativeLayout {
     private ImageButton closeButton;
     private ImageButton dragButton;
 
+    private int marginTop;
     private int headerHeight;
     private Drawable headerBackground;
     private String headerTitle;
@@ -63,6 +64,7 @@ public class Card extends RelativeLayout {
                     0, 0);
 
             try {
+                marginTop = (int) typedArray.getDimension(R.styleable.Card_margin_top, getResources().getDimension(R.dimen.margin_top));
                 headerHeight = (int) typedArray.getDimension(R.styleable.Card_header_height, getResources().getDimension(R.dimen.header_height));
                 headerBackground = typedArray.getDrawable(R.styleable.Card_header_background);
                 headerTitle = typedArray.getString(R.styleable.Card_header_title);
@@ -227,7 +229,7 @@ public class Card extends RelativeLayout {
                         break;
                     case MotionEvent.ACTION_MOVE:
                         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
-                        layoutParams.height = Math.max(this.screenHeight - Y, header.getHeight());
+                        layoutParams.height = Math.max(Math.min(this.screenHeight - Y, this.screenHeight - marginTop), header.getHeight());
                         view.setLayoutParams(layoutParams);
                         break;
                     default:

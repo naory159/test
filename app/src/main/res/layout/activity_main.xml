@@ -97,6 +97,7 @@
         android:id="@+id/card"
         android:background="@android:color/white"
         android:layout_alignParentBottom="true"
+        app:margin_top="29dp"
         app:header_height="30dp"
         app:header_background="@drawable/background_with_top_shadow"
         app:header_title="יצירת סימניה">

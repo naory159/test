@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="Card">
         <attr name="header_height" format="dimension" />
+        <attr name="margin_top" format="dimension" />
         <attr name="header_background" format="integer" />
         <attr name="header_title" format="string" />
         <attr name="title_color" format="reference" />
