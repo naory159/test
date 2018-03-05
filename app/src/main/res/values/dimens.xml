@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_top">29dp</dimen>
-    <dimen name="header_height">30dp</dimen>
+
 </resources>

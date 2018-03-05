@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.ny.popuppanel.PopUpPanel;
+
 public class MainActivity extends Activity {
 
     TextView headerTitle = null;
@@ -23,7 +25,7 @@ public class MainActivity extends Activity {
     Button changeFontButton = null;
     Button bookmarkSaveButton = null;
 
-    Card card;
+    PopUpPanel card;
 
     EditText bookmarkEditText = null;
     TextView bookmarkTextView = null;
@@ -69,7 +71,6 @@ public class MainActivity extends Activity {
         bookmarkTextView = findViewById(R.id.bookmark_text_view);
 
         Typeface alefFont = Typeface.createFromAsset(getAssets(), "fonts/Alef-regular.ttf");
-        Typeface assistantFont = Typeface.createFromAsset(getAssets(), "fonts/Assistant-Regular.ttf");
         card.setTitleTypeface(alefFont);
         bookmarkSaveButton.setTypeface(alefFont);
         bookmarkEditText.setTypeface(alefFont);

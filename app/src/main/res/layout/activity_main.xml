@@ -91,7 +91,7 @@
         android:layout_toStartOf="@+id/button3"
         android:text="החלף גופן" />
 
-    <com.ny.myapplication.customviewtest.Card
+    <org.ny.popuppanel.PopUpPanel
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:id="@+id/card"
@@ -159,6 +159,6 @@
 
         </RelativeLayout>
 
-    </com.ny.myapplication.customviewtest.Card>
+    </org.ny.popuppanel.PopUpPanel>
 
 </RelativeLayout>

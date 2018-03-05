@@ -1,4 +1,4 @@
-package com.ny.myapplication.customviewtest;
+package org.ny.popuppanel;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class Card extends RelativeLayout {
+public class PopUpPanel extends RelativeLayout {
 
     private final int DELTA_TOUCH = 50;
 
@@ -41,17 +41,17 @@ public class Card extends RelativeLayout {
     private Animation slide_down;
     private Animation slide_up;
 
-    public Card(Context context) {
+    public PopUpPanel(Context context) {
         super(context);
         init(null);
     }
 
-    public Card(Context context, AttributeSet attrs) {
+    public PopUpPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public Card(Context context, AttributeSet attrs, int defStyle) {
+    public PopUpPanel(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
@@ -77,8 +77,8 @@ public class Card extends RelativeLayout {
             }
         }
 
-        inflate(getContext(), R.layout.card, this);
-        this.mainLayout = findViewById(R.id.card);
+        inflate(getContext(), R.layout.popup_panel, this);
+        this.mainLayout = findViewById(this.getId());
         this.header = findViewById(R.id.header);
 
         this.headerTextView = findViewById(R.id.header_text_view);
@@ -200,7 +200,7 @@ public class Card extends RelativeLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
-    private class CardTouchListener implements View.OnTouchListener {
+    private class CardTouchListener implements OnTouchListener {
         private Context context;
         private int screenHeight = 0;
 
@@ -228,7 +228,7 @@ public class Card extends RelativeLayout {
                     case MotionEvent.ACTION_POINTER_UP:
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+                        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
                         layoutParams.height = Math.max(Math.min(this.screenHeight - Y, this.screenHeight - marginTop), header.getHeight());
                         view.setLayoutParams(layoutParams);
                         break;
