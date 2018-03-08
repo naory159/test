@@ -8,5 +8,8 @@
         <attr name="title_color" format="reference" />
         <attr name="header_close_icon" format="reference" />
         <attr name="header_drag_icon" format="reference" />
+        <attr name="is_popup_draggable" format="boolean" />
+        <attr name="hide_draggable_icon" format="boolean" />
+        <attr name="wrap_content_height" format="boolean" />
     </declare-styleable>
 </resources>

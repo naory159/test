@@ -10,12 +10,14 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PopUpPanel extends RelativeLayout {
 
@@ -34,6 +36,10 @@ public class PopUpPanel extends RelativeLayout {
     private Drawable headerBackground;
     private String headerTitle;
     private int titleColor;
+    private boolean isPopupDraggable;
+    private boolean hideDraggableIcon;
+    private boolean wrapContentHeight;
+    private boolean isFirstLayout = true;
 
     private Drawable headerCloseIcon;
     private Drawable headerDragIcon;
@@ -71,6 +77,9 @@ public class PopUpPanel extends RelativeLayout {
                 titleColor = typedArray.getColor(R.styleable.Card_title_color, getResources().getColor(R.color.titleColor));
                 headerCloseIcon = typedArray.getDrawable(R.styleable.Card_header_close_icon);
                 headerDragIcon = typedArray.getDrawable(R.styleable.Card_header_drag_icon);
+                isPopupDraggable = typedArray.getBoolean(R.styleable.Card_is_popup_draggable, true);
+                hideDraggableIcon = typedArray.getBoolean(R.styleable.Card_hide_draggable_icon, false);
+                wrapContentHeight = typedArray.getBoolean(R.styleable.Card_wrap_content_height, false);
             } finally {
                 typedArray.recycle();
                 typedArray = null;
@@ -104,13 +113,17 @@ public class PopUpPanel extends RelativeLayout {
         }
         this.header.setLayoutParams(headerParams);
 
-        this.mainLayout.setOnTouchListener(new CardTouchListener(this.getContext()));
+        if (isPopupDraggable)
+            this.mainLayout.setOnTouchListener(new CardTouchListener(this.getContext()));
         this.closeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 hideCard();
             }
         });
+
+        if (dragButton != null && hideDraggableIcon)
+            this.dragButton.setVisibility(INVISIBLE);
 
         //Load animation
         slide_down = AnimationUtils.loadAnimation(this.getContext(),
@@ -139,8 +152,32 @@ public class PopUpPanel extends RelativeLayout {
             v = getChildAt(i);
             if (v != null) {
                 tag = (String)v.getTag();
-                if (tag != null && tag.equals("content"))
+                if (tag != null && tag.equals("content")) {
                     v.setPadding(0, this.headerHeight, 0, 0);
+
+                    if (isFirstLayout && wrapContentHeight) {
+                        isFirstLayout = !isFirstLayout;
+                        ViewTreeObserver vto = v.getViewTreeObserver();
+                        final View finalV = v;
+                        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                            @Override
+                            public void onGlobalLayout() {
+
+                                if (finalV.getMeasuredHeight() > 0){
+                                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                                        finalV.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                                    } else {
+                                        finalV.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                                    }
+                                    int height = finalV.getMeasuredHeight();
+                                    LayoutParams layoutParams = (LayoutParams) mainLayout.getLayoutParams();
+                                    layoutParams.height = height + headerHeight;
+                                    mainLayout.setLayoutParams(layoutParams);
+                                }
+                            }
+                        });
+                    }
+                }
             }
         }
     }
@@ -153,6 +190,26 @@ public class PopUpPanel extends RelativeLayout {
     public void showCard() {
         this.mainLayout.startAnimation(this.slide_up);
         this.mainLayout.setVisibility(VISIBLE);
+    }
+
+    public void setTitle(String title) {
+        this.headerTextView.setText(title);
+    }
+
+    public void setTitle(int titleRes) {
+        this.headerTextView.setText(titleRes);
+    }
+
+    public void setTitleTypeface(Typeface font) {
+        this.headerTextView.setTypeface(font);
+    }
+
+    public void setTitleColor(int colorRes) {
+        this.headerTextView.setTextColor(colorRes);
+    }
+
+    public int getPanelHeight() {
+        return this.getMeasuredHeight();
     }
 
     public void setOpenAnimation(Animation animation) {
@@ -181,10 +238,6 @@ public class PopUpPanel extends RelativeLayout {
 
     public boolean isHide() {
         return this.mainLayout.getVisibility() == GONE;
-    }
-
-    public void setTitleTypeface(Typeface font) {
-        this.headerTextView.setTypeface(font);
     }
 
     private boolean isDragButtonTouched(MotionEvent motionEvent) {

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="29dp"
         android:layout_alignParentTop="true"
-        android:background="#999999">
+        android:background="@color/colorPrimaryDark">
 
         <ImageView
             android:id="@+id/left_arrow"
@@ -100,11 +100,14 @@
         app:margin_top="29dp"
         app:header_height="30dp"
         app:header_background="@drawable/background_with_top_shadow"
-        app:header_title="יצירת סימניה">
+        app:header_title="יצירת סימניה"
+        app:is_popup_draggable="true"
+        app:hide_draggable_icon="false"
+        app:wrap_content_height="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:tag="content">
 
             <TextView
