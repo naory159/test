@@ -60,36 +60,55 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:text="לחץ כאן" />
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button3"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginTop="13dp"
-        android:text="החלף אנימציה" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:text="לחץ כאן" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_toLeftOf="@+id/button3"
-        android:layout_toStartOf="@+id/button3"
-        android:text="החלף גופן" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/button3"
+            android:layout_marginEnd="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="13dp"
+            android:text="החלף אנימציה" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/button4"
+            android:layout_alignBottom="@+id/button4"
+            android:layout_toLeftOf="@+id/button3"
+            android:layout_toStartOf="@+id/button3"
+            android:text="החלף גופן" />
+
+        <com.anshul.gooey.GooeyMenu
+            android:id="@+id/gooey_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:fab_radius="@dimen/big_circle_radius"
+            app:gap_between_menu_fab="@dimen/min_gap"
+            app:menu_radius="@dimen/small_circle_radius"
+            app:no_of_menu="6"
+            app:menu_drawable="@array/drawable_array"
+            app:menu_icon="@drawable/menu_icon" />
+
+    </RelativeLayout>
 
     <org.ny.popuppanel.PopUpPanel
         android:layout_width="match_parent"

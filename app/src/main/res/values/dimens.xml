@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="min_height">160dp</dimen>
+    <dimen name="big_circle_radius">50dp</dimen>
+    <dimen name="small_circle_radius">25dp</dimen>
 
+    <dimen name="min_gap">90dp</dimen>
 </resources>

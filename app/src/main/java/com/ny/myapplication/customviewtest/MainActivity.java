@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
@@ -16,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.anshul.gooey.GooeyMenu;
 
 import org.ny.popuppanel.PopUpPanel;
 
@@ -28,6 +29,7 @@ public class MainActivity extends Activity {
     Button changeFontButton = null;
     Button bookmarkSaveButton = null;
 
+    GooeyMenu menu;
     PopUpPanel card;
 
     EditText bookmarkEditText = null;
@@ -70,6 +72,7 @@ public class MainActivity extends Activity {
         changeAnimationButton = findViewById(R.id.button4);
         changeFontButton = findViewById(R.id.button5);
 
+        menu = findViewById(R.id.gooey_menu);
         card = findViewById(R.id.card);
 
         bookmarkSaveButton = findViewById(R.id.bookmark_save_button);

@@ -188,6 +188,8 @@ public class PopUpPanel extends RelativeLayout {
     }
 
     public void showCard() {
+//        this.mainLayout.bringToFront();
+//        this.mainLayout.invalidate();
         this.mainLayout.startAnimation(this.slide_up);
         this.mainLayout.setVisibility(VISIBLE);
     }
